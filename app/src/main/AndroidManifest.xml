@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mx.com.develop">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Develop">
         <activity
-            android:name=".MainActivity"
+            android:name=".iu.RandomActivity"
+            android:exported="true" />
+        <activity
+            android:name=".iu.CardViewActivity"
+            android:exported="true" />
+        <activity
+            android:name=".iu.ListViewActivity"
+            android:exported="true" />
+        <activity
+            android:name=".iu.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
