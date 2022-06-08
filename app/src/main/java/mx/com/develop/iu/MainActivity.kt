@@ -1,9 +1,13 @@
 package mx.com.develop.iu
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import mx.com.develop.databinding.ActivityMainBinding
@@ -19,7 +23,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        quoteViewModel.onCreate()
+        val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+        val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
+        if (isConnected){
+            quoteViewModel.onCreate()
+        }else{
+            Toast.makeText(this, "Verifica tu conexión a internet", Toast.LENGTH_SHORT).show()
+            binding.btnCard.isEnabled = false
+            binding.btnList.isEnabled = false
+            binding.btnRandom.isEnabled = false
+        }
         binding.btnList.setOnClickListener(this)
         binding.btnCard.setOnClickListener(this)
         binding.btnRandom.setOnClickListener(this)

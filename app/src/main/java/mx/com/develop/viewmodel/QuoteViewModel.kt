@@ -14,9 +14,6 @@ class QuoteViewModel : ViewModel() {
     var getQuotesUseCase = GetQuotesUseCase()
 
     val quoteModel = MutableLiveData<QuoteModel>()
-    val quote : ArrayList<String> = ArrayList<String>()
-    val author : ArrayList<String> = ArrayList<String>()
-
 
     fun onCreate() {
         viewModelScope.launch {
